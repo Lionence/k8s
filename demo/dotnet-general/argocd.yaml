@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: "#{APP_NAME}#"
+  namespace: "#{ARGOCD_NAMESPACE}#"
+spec:
+  project: default
+  source:
+    repoURL: "https://github.com/hudannag/aks"
+    targetRevision: master
+    path: "demo/dotnet-general/chart"
+    helm:
+      valueFile:
+        - "#{APP_NAME}#.values.yaml"
+      values: |
+        targetNamespace: #{TARGET_NAMESPACE}#
+        APP_NAME: #{APP_NAME}#
+        ingress:
+          enabled: #{#{APP_NAME}#_INGRESS_ENABLED}#
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: "#{TARGET_NAMESPACE}#"
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

@@ -1,0 +1,15 @@
+nameOverride: devopsdani-godaddy-acme-certjob
+
+image:
+  repository: devopsdani.azurecr.io/acme-certjob
+  tag: latest
+  pullPolicy: Always
+
+env:
+  DOMAIN: "devopsdani.com"
+  DNS_FUNC: "dns_gd"
+  GD_Key: ""
+  GD_Secret: ""
+  ADDITIONAL_NAMESPACES:
+    - demo
+    - argocd

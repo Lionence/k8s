@@ -1,0 +1,4 @@
+apiVersion: v1
+description: DevOpsDani dotNet General helm chart for Kubernetes
+name: dotnet-general
+version: 1.0.0

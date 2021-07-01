@@ -1,0 +1,34 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: '{{ template "name" . }}-cronjob'
+spec:
+  schedule: "0 0 1,15 * *"
+  jobTemplate:
+    spec:
+      backoffLimit: 3
+      template:
+        spec:
+          restartPolicy: Never
+          volumes:
+          - name: kubeconfig
+            secret:
+              secretName: '{{ template "name" . }}-config-secret'
+          containers:
+          - name: cronjob-container
+            image: '{{ .Values.image.repository }}:{{ .Values.image.tag }}'
+            imagePullPolicy: {{ .Values.image.pullPolicy }}
+            env:
+            - name: DOMAIN
+              value: {{ .Values.env.DOMAIN }}
+            - name: DNS_FUNC
+              value: {{ .Values.env.DNS_FUNC }}
+            - name: ADDITIONAL_NAMESPACES
+              value: {{ .Values.env.ADDITIONAL_NAMESPACES }}
+            envFrom:
+            - secretRef:
+                name: '{{ template "name" . }}-env-secret'
+            volumeMounts:
+              - name: kubeconfig
+                mountPath: /data/config
+                subPath: config

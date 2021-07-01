@@ -1,0 +1,9 @@
+# Defining which chart to pull as dependency.
+# Every component of that chart will be present in our application.
+# We can override the default values of the dependencies in the values.yaml (see the file for example), or in the manifest (see microservice.yaml).
+# A little help which chart we are using on github: https://github.com/DandyDeveloper/charts/tree/master/charts/redis-ha
+# You might need to check the configurable parameters of the chart on the linked helm chart.
+dependencies:
+  - name: redis-ha
+    version: 4.9.3
+    repository: https://dandydeveloper.github.io/charts

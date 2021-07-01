@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    app: {{ template "appName" . }}
+  name: '{{ template "appName" . }}-deployment'
+  namespace: {{ template "namespace" . }}
+spec:
+  tls:
+    - hosts:
+        - redis.devopsdani.com
+      secretName: wildcard-devopsdani.com
+  rules:
+    - host: redis.devopsdani.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              serviceName: redis-redis-ha-haproxy
+              servicePort: 6379

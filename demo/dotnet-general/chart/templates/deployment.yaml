@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: {{ template "appName" . }}
+  name: '{{ template "appName" . }}-deployment'
+  namespace: {{ template "namespace" . }}
+spec:
+  replicas: {{ required ".Values.deployment.replicas is mandatory!" .Values.deployment.replicas }}
+  progressDeadlineSeconds: 60
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: {{ template "appName" . }}
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: {{ template "appName" . }}
+    spec:
+      containers:
+      - image: {{ template "dockerImage" . }}
+        imagePullPolicy: {{ required ".Value.image.pullPolicy is mandatory!" .Values.image.pullPolicy }}
+        name: {{ template "appName" . }}
+        ports:
+        - containerPort: 80
+          protocol: TCP

@@ -1,0 +1,14 @@
+APP_NAME: asd
+TARGET_NAMESPACE: asd
+
+image:
+  repo: 'devopsdani.azurecr.io'
+  name: helloworld
+  tag: latest
+  pullPolicy: IfNotPresent
+
+deployment:
+  replicas: 3
+
+ingress:
+  enabled: false

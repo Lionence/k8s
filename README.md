@@ -1,1 +1,1 @@
-# aks
+# DevOpsDani.com examples and setp guides are here
