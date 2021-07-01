@@ -1,0 +1,16 @@
+redis-ha:
+  resources:
+    limits:
+      cpu: 100m
+      memory:
+  replicas: 2
+  auth: 'true'
+  redisPassword: ""
+  persistentVolume:
+    enabled: true
+    storageClass: azurefile-retain
+  haproxy:
+    enabled: true
+    replicas: 2
+    service:
+      type: ClusterIP

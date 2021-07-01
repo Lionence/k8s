@@ -1,0 +1,19 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1beta1
+metadata:
+  name: hello-world-ingress
+  namespace: demo
+spec:
+  tls:
+    - hosts:
+        - demo.devopsdani.com
+      secretName: wildcard-devopsdani.com
+  rules:
+    - host: demo.devopsdani.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              serviceName: hello-world-service
+              servicePort: 80

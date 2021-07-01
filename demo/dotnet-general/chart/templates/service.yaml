@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: {{ template "appName" . }}
+  name: '{{ template "appName" . }}-deployment'
+  namespace: {{ template "namespace" . }}
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: {{ template "appName" . }}
