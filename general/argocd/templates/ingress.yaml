@@ -1,26 +1,30 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
     ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-    # type of authentication
-    nginx.ingress.kubernetes.io/auth-type: basic
-    # name of the secret that contains the user/password definitions
-    nginx.ingress.kubernetes.io/auth-secret: admin-auth
-    # message to display with an appropriate context why the authentication is required
-    nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required.'
+    # type of authentication (optional)
+    # nginx.ingress.kubernetes.io/auth-type: basic
+    # name of the secret that contains the user/password definitions (optional)
+    # nginx.ingress.kubernetes.io/auth-secret: admin-auth
+    # message to display with an appropriate context why the authentication is required (optional)
+    # nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required.'
   name: argocd-ingress
   namespace: argocd
 spec:
+  ingressClassName: nginx
   rules:
-  - host: argocd.devopsdani.com
-    http:
+  - http:
       paths:
-      - backend:
-          serviceName: argo-cd-argocd-server
-          servicePort: 443
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: argo-cd-argocd-server
+            port:
+              number: 443
   tls:
   - hosts:
-    - argocd.devopsdani.com
-    secretName: wildcard-devopsdani.com
+    - argocd.***REMOVED***
+    secretName: letsencrypt

@@ -6,7 +6,7 @@ image:
   pullPolicy: Always
 
 env:
-  DOMAIN: "devopsdani.com"
+  DOMAIN: "aks.devopsdani.com"
   DNS_FUNC: "dns_gd"
   GD_Key: ""
   GD_Secret: ""
