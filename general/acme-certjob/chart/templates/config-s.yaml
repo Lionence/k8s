@@ -4,4 +4,4 @@ metadata:
   name: '{{ template "name" . }}-config-secret'
 data:
   config: |
-    <kubeconfig_as_base64>
+    {{ template "kubeconfig" . }}
