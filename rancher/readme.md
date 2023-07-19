@@ -9,7 +9,7 @@ sudo docker run -d --name rancher-server \
     --restart=unless-stopped \
     -p 80:80 -p 443:443 \
     --privileged rancher/rancher:v2.7.5 \
-    --acme-domain ***REMOVED***
+    --acme-domain k8s.devopsdani.com
 
 ## Register new nodes
 ```

@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt
+  namespace: cert-manager
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: "office@devopsdani.com"
+    privateKeySecretRef:
+      name: letsencrypt
+    solvers:
+    - dns01:
+        azureDNS:
+          hostedZoneName: "k8s.devopsdani.com"
+          resourceGroupName: "k8_group"
+          subscriptionID: "5ecbf67e-8d4c-4945-b3dc-ca0ea1cfdb12"
+          environment: AzurePublicCloud
+          managedIdentity:
+            clientID: 1d0740d4-475c-4aa2-b2b7-03687252f2ff

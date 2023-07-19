@@ -26,5 +26,5 @@ spec:
               number: 443
   tls:
   - hosts:
-    - argocd.***REMOVED***
+    - argocd.k8s.devopsdani.com
     secretName: letsencrypt

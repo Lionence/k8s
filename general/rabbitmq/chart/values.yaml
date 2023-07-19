@@ -65,13 +65,13 @@ auth:
   ## RabbitMQ application password
   ## ref: https://github.com/bitnami/bitnami-docker-rabbitmq#environment-variables
   ##
-  password: ***REMOVED***
+  password: D3v0psD4n1
   # existingPasswordSecret: name-of-existing-secret
 
   ## Erlang cookie to determine whether different nodes are allowed to communicate with each other
   ## ref: https://github.com/bitnami/bitnami-docker-rabbitmq#environment-variables
   ##
-  erlangCookie: ***REMOVED***
+  erlangCookie: A28H3T2GD0764188Q90K09
   # existingErlangSecret: name-of-existing-secret
 
   ## Enable encryption to rabbitmq
@@ -257,7 +257,7 @@ extraConfiguration: |-
   mqtt.subscription_ttl = undefined
   mqtt.prefetch = 10
   mqtt.default_user = admin
-  mqtt.default_pass = ***REMOVED***
+  mqtt.default_pass = D3v0psD4n1
   mqtt.exchange = iot.mqtt.fanout
 
 ## Configuration file content: advanced configuration

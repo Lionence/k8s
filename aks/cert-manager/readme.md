@@ -24,7 +24,7 @@ export IDENTITY_CLIENT_ID=$(az identity show --name "${IDENTITY_NAME}" --query '
 az role assignment create \
     --role "DNS Zone Contributor" \
     --assignee $IDENTITY_CLIENT_ID \
-    --scope "subscriptions/***REMOVED***/resourceGroups/***REMOVED***/providers/Microsoft.Network/dnszones/***REMOVED***"
+    --scope "subscriptions/5ecbf67e-8d4c-4945-b3dc-ca0ea1cfdb12/resourceGroups/k8_group/providers/Microsoft.Network/dnszones/k8s.devopsdani.com"
 ```
 
 ### Install the Azure workload identity features
