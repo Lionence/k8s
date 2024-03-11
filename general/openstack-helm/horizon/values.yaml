@@ -1135,8 +1135,8 @@ pod:
         horizon_test:
           readOnlyRootFilesystem: true
           allowPrivilegeEscalation: false
-#  affinity:
-#    anti:
+  affinity:
+    anti:
 #      type:
 #        default: preferredDuringSchedulingIgnoredDuringExecution
 #      topologyKey:
