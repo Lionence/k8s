@@ -1,0 +1,73 @@
+---
+# Copyright 2019, SUSE LINUX GmbH.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+- project:
+    check:
+      jobs:
+        - openstack-helm-images-build-mariadb
+    gate:
+      jobs:
+        - openstack-helm-images-upload-mariadb
+    promote:
+      jobs:
+        - openstack-helm-images-promote-mariadb
+    periodic-weekly:
+      jobs:
+        - openstack-helm-images-upload-mariadb
+        - openstack-helm-images-promote-mariadb:
+            dependencies:
+              - name: openstack-helm-images-compute-kit-2023-1-ubuntu_focal
+              # - name: openstack-helm-images-compute-kit-2023-2-ubuntu_jammy
+
+- job:
+    name: openstack-helm-images-build-mariadb
+    parent: openstack-helm-images-build
+    description: Build mariadb images
+    vars: &mariadb_vars
+      currentdate: "{{ now(utc=True,fmt='%Y%m%d') }}"
+      docker_images:
+        - context: mariadb
+          repository: openstackhelm/mariadb
+          dockerfile: Dockerfile.ubuntu
+          build_args:
+            - FROM=docker.io/mariadb@sha256:aa38c70792b0330da98fbf20b7191f27f65ff2f55790e5a0b0ec2a02fcb3d03d
+          tags:
+            - "latest-ubuntu_focal"
+            - "ubuntu_focal-{{ currentdate }}"
+        - context: mariadb
+          repository: openstackhelm/mariadb
+          dockerfile: Dockerfile.ubuntu
+          build_args:
+            - FROM=mariadb:10.11.6-jammy
+          tags:
+            - "latest-ubuntu_jammy"
+            - "ubuntu_jammy-{{ currentdate }}"
+    files: &mariadb_files
+      - mariadb/.*
+      - zuul.d/mariadb.yaml
+
+- job:
+    name: openstack-helm-images-upload-mariadb
+    parent: openstack-helm-images-upload
+    description: Build and upload mariadb images
+    vars: *mariadb_vars
+    files: *mariadb_files
+
+- job:
+    name: openstack-helm-images-promote-mariadb
+    parent: openstack-helm-images-promote
+    description: Promote a previously published mariadb image to latest.
+    vars: *mariadb_vars
+    files: *mariadb_files
