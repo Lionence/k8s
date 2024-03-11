@@ -17,7 +17,7 @@
 
 # radosgw, rbd, swift or pvc
 ---
-storage: swift
+storage: rbd
 
 labels:
   api:
