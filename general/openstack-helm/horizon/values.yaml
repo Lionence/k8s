@@ -1140,7 +1140,7 @@ pod:
       type:
         default: preferredDuringSchedulingIgnoredDuringExecution
       topologyKey:
-        default: ""
+        default: kubernetes.io/hostname
       weight:
         default: 10
   tolerations:
