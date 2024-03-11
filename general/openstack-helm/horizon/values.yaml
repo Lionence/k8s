@@ -1135,14 +1135,6 @@ pod:
         horizon_test:
           readOnlyRootFilesystem: true
           allowPrivilegeEscalation: false
-  affinity:
-    anti:
-      type:
-        default: preferredDuringSchedulingIgnoredDuringExecution
-      topologyKey:
-        default: ""
-      weight:
-        default: 10
   tolerations:
     horizon:
       enabled: false
