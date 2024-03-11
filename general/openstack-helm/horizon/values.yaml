@@ -1137,12 +1137,12 @@ pod:
           allowPrivilegeEscalation: false
   affinity:
     anti:
-#      type:
-#        default: preferredDuringSchedulingIgnoredDuringExecution
-#      topologyKey:
-#        default: kubernetes.io/hostname
-#      weight:
-#        default: 10
+      type:
+        default: preferredDuringSchedulingIgnoredDuringExecution
+      topologyKey:
+        default: kubernetes.io/hostname
+      weight:
+        default: 10
   tolerations:
     horizon:
       enabled: false
