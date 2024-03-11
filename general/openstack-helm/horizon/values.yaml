@@ -1139,6 +1139,8 @@ pod:
     anti:
       type:
         default: preferredDuringSchedulingIgnoredDuringExecution
+      topologyKey:
+        default: ""
       weight:
         default: 10
   tolerations:
