@@ -12,12 +12,10 @@ global:
 
 helm-toolkit:
   enabled: true
-  helm3_hook: false
 
 rabbitmq:
   release_group: rabbitmq
   enabled: true
-  helm3_hook: false
   volume:
     enabled: false
     use_local_path:
@@ -30,7 +28,6 @@ rabbitmq:
 mariadb:
   release_group: mariadb
   enabled: true
-  helm3_hook: false
   pod:
     replicas:
       server: 1
@@ -42,52 +39,48 @@ mariadb:
 memcached:
   release_group: memcached
   enabled: true
-  helm3_hook: false
 
 keystone:
   release_group: keystone
   enabled: true
-  helm3_hook: false
 
 heat:
   release_group: heat
   enabled: true
-  helm3_hook: false
+  helm3_hook: true
 
 glance:
   release_group: glance
   enabled: true
-  helm3_hook: false
+  helm3_hook: true
 
 openvswitch:
   release_group: openvswitch
   enabled: true
-  helm3_hook: false
 
 libvirt:
   release_group: libvirt
   enabled: true
-  helm3_hook: false
 
 nova:
   release_group: nova
   enabled: true
-  helm3_hook: false
+  helm3_hook: true
 
 placement:
   release_group: placement
   enabled: true
-  helm3_hook: false
+  helm3_hook: true
 
 horizon:
   release_group: horizon
   enabled: false
-  helm3_hook: false
+  helm3_hook: true
 
 neutron:
   release_group: neutron
   enabled: true
-  helm3_hook: false
+  helm3_hook: true
   conf:
     auto_bridge_add:
       # no idea why, but something with sub-charts and null values get ommitted entirely from sub chart

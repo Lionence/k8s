@@ -683,8 +683,8 @@ network_policy:
       - {}
 
 # Helm hook breaks for helm2.
-# Set helm3_hook: false in case helm2 is used.
-helm3_hook: false
+# Set helm3_hook: true in case helm2 is used.
+helm3_hook: true
 
 manifests:
   certificates: false
