@@ -415,7 +415,7 @@ volume:
 
 # Hook break for helm2.
 # Set helm3_hook to false while using helm2
-helm3_hook: true
+helm3_hook: false
 
 manifests:
   certificates: false

@@ -2495,7 +2495,7 @@ network_policy:
     egress:
       - {}
 
-helm3_hook: true
+helm3_hook: false
 
 health_probe:
   logging:
