@@ -62,6 +62,10 @@ metadata:
     "helm.sh/hook-weight": "-5"
     "helm.sh/hook-delete-policy": before-hook-creation
 {{- end }}
+{{- if .Values.argocd_hook }}
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+{{- end }}
 spec:
   template:
     metadata:
